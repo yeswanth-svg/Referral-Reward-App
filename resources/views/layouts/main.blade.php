@@ -13,8 +13,12 @@
     <link rel="icon" href="{{asset('assets/images/favicon.ico')}}" type="image/x-icon">
     <link rel="stylesheet" href="{{asset('assets/css/custom-preloader.css')}}">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
     <!-- Stylesheets -->
@@ -32,7 +36,8 @@
     <link href="{{asset('assets/css/responsive.css')}}" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <style>
         .item-quantity {
             display: flex;
@@ -62,7 +67,8 @@
             <div class="header-upper">
                 <div class="large-container">
                     <div class="upper-inner">
-                        <figure class="logo-box"><a href="{{route('welcome')}}"><img src="{{asset('assets/images/logo.png')}}" alt=""></a></figure>
+                        <figure class="logo-box"><a href="{{route('welcome')}}"><img
+                                    src="{{asset('assets/images/logo.png')}}" alt=""></a></figure>
                         <div class="menu-area">
                             <!--Mobile Navigation Toggler-->
                             <div class="mobile-nav-toggler">
@@ -73,8 +79,13 @@
                             <nav class="main-menu navbar-expand-md navbar-light">
                                 <div class="collapse navbar-collapse show clearfix" id="navbarSupportedContent">
                                     <ul class="navigation clearfix">
-                                        <li class="{{request()->route()->getName() === 'welcome' ? 'current' : ''}}"><a href="{{route('welcome')}}">Home</a></li>
-                                        <li class="{{request()->route()->getName() === 'shop' ? 'current' : ''}}"><a href="{{route('shop')}}">Shop<span>Hot</span></a></li>
+                                        <li class="{{request()->route()->getName() === 'welcome' ? 'current' : ''}}"><a
+                                                href="{{route('welcome')}}">Home</a></li>
+                                        <li class="{{request()->route()->getName() === 'shop' ? 'current' : ''}}"><a
+                                                href="{{route('shop')}}">Shop<span>Hot</span></a></li>
+                                        <li class="{{request()->route()->getName() === 'gallery' ? 'current' : ''}}"><a
+                                                href="{{route('welcome')}}">Gallery</a></li>
+
                                         <li><a href="">Contact</a></li>
                                     </ul>
                                 </div>
@@ -82,7 +93,9 @@
                         </div>
                         <ul class="menu-right-content clearfix">
                             <li><a href="{{route('login')}}"><i class="flaticon-user"></i></a></li>
-                            <li class="shop-cart"><a href="{{route('cart')}}"><i class="flaticon-shopping-cart-1"></i><span id="item-count">{{count_cart_items()}}</span></a></li>
+                            <li class="shop-cart"><a href="{{route('cart')}}"><i
+                                        class="flaticon-shopping-cart-1"></i><span
+                                        id="item-count">{{count_cart_items()}}</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -112,7 +125,8 @@
                 <div class="auto-container">
                     <div class="outer-box clearfix">
                         <div class="logo-box pull-left">
-                            <figure class="logo"><a href="{{route('welcome')}}"><img src="{{asset('assets/images/small-logo.png')}}" alt=""></a></figure>
+                            <figure class="logo"><a href="{{route('welcome')}}"><img
+                                        src="{{asset('assets/images/small-logo.png')}}" alt=""></a></figure>
                         </div>
                         <div class="menu-area pull-right">
                             <nav class="main-menu clearfix">
@@ -130,8 +144,10 @@
             <div class="menu-backdrop"></div>
             <div class="close-btn"><i class="fas fa-times"></i></div>
             <nav class="menu-box">
-                <div class="nav-logo"><a href="{{route('welcome')}}"><img src="{{asset('assets/images/logo-2.png')}}" alt="" title=""></a></div>
-                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header--></div>
+                <div class="nav-logo"><a href="{{route('welcome')}}"><img src="{{asset('assets/images/logo-2.png')}}"
+                            alt="" title=""></a></div>
+                <div class="menu-outer"><!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                </div>
                 <div class="contact-info">
                     <h4>Contact Info</h4>
                     <ul>
@@ -163,7 +179,9 @@
                             <div class="row clearfix">
                                 <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
                                     <div class="footer-widget logo-widget">
-                                        <figure class="footer-logo"><a href="{{route('welcome')}}"><img src="{{asset('assets/images/footer-logo-2.png')}}" alt=""></a></figure>
+                                        <figure class="footer-logo"><a href="{{route('welcome')}}"><img
+                                                    src="{{asset('assets/images/footer-logo-2.png')}}" alt=""></a>
+                                        </figure>
                                     </div>
                                 </div>
                                 <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
@@ -208,9 +226,12 @@
                                             <h3>Contact</h3>
                                         </div>
                                         <ul class="info-list clearfix">
-                                            <li><i class="flaticon-maps-and-flags"></i>4708 Ruecker Wall, Kassandratown, HI</li>
-                                            <li><i class="flaticon-phone-ringing"></i><a href="tel:23055873407">+2(305) 587-3407</a></li>
-                                            <li><i class="flaticon-email"></i><a href="mailto:info@example.com">info@example.com</a></li>
+                                            <li><i class="flaticon-maps-and-flags"></i>4708 Ruecker Wall, Kassandratown,
+                                                HI</li>
+                                            <li><i class="flaticon-phone-ringing"></i><a href="tel:23055873407">+2(305)
+                                                    587-3407</a></li>
+                                            <li><i class="flaticon-email"></i><a
+                                                    href="mailto:info@example.com">info@example.com</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -223,7 +244,8 @@
                                             <p>4708 Ruecker Wall, Kassandratown, HI 97729</p>
                                             <form action="" method="post" class="newsletter-form">
                                                 <div class="form-group">
-                                                    <input type="email" name="email" placeholder="Enter your email" required="">
+                                                    <input type="email" name="email" placeholder="Enter your email"
+                                                        required="">
                                                     <button type="submit" class="theme-btn-three">Subscribe</button>
                                                 </div>
                                             </form>
@@ -238,10 +260,14 @@
             <div class="footer-bottom">
                 <div class="auto-container clearfix">
                     <ul class="cart-list pull-left clearfix">
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-1.png')}}" alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-2.png')}}" alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-3.png')}}" alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-4.png')}}" alt=""></a></li>
+                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-1.png')}}"
+                                    alt=""></a></li>
+                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-2.png')}}"
+                                    alt=""></a></li>
+                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-3.png')}}"
+                                    alt=""></a></li>
+                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-4.png')}}"
+                                    alt=""></a></li>
                     </ul>
                     <div class="copyright pull-right">
                         <ul class="footer-social clearfix">
@@ -264,7 +290,7 @@
         </button>
     </div>
     <script>
-        $(window).on('load', function() {
+        $(window).on('load', function () {
             // Hide the preloader
             $('.loadingio-spinner-spinner-fp2tsfk6ols').fadeOut('slow');
         });
