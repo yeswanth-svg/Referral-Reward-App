@@ -3,20 +3,22 @@
 @section('content')
 <div class="container-fluid">
     <div class="row">
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-4 col-md-6">
             <div class="card card-animate">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
-                            <p class="text-uppercase fw-medium text-muted mb-0">Total Earnings</p>
+                            <p class="text-uppercase fw-medium text-muted mb-0">Total Credits</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-end justify-content-between mt-4">
                         <div>
-                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value"
-                                    data-target="{{get_user_total_earnings(Auth::id())}}">0</span></h4>
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><i class="fa-solid fa-coins"
+                                    style="color: gold !important;"></i>&nbsp;<span class="counter-value"
+                                    data-target="{{get_user_total_earnings(Auth::id())}}">0</span>
+                            </h4>
                             <a href="{{route('referral_history')}}" class="text-decoration-underline">View Affiliate
-                                Earnings</a>
+                                History</a>
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title bg-primary-subtle rounded fs-3">
@@ -28,20 +30,20 @@
             </div><!-- end card -->
         </div><!-- end col -->
 
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-4 col-md-6">
             <!-- card -->
             <div class="card card-animate">
                 <div class="card-body">
                     <div class="d-flex align-items-center">
                         <div class="flex-grow-1">
-                            <p class="text-uppercase fw-medium text-muted mb-0">Referrals</p>
+                            <p class="text-uppercase fw-medium text-muted mb-0">Total Referrals</p>
                         </div>
                     </div>
                     <div class="d-flex align-items-end justify-content-between mt-4">
                         <div>
                             <h4 class="fs-22 fw-semibold ff-secondary mb-4"><span class="counter-value"
                                     data-target="{{get_user_referrals_count(Auth::id())}}">0</span></h4>
-                            <a href="{{route('referrals')}}" class="text-decoration-underline">See details</a>
+                            <a href="{{route('referral_history')}}" class="text-decoration-underline">See details</a>
                         </div>
                         <div class="avatar-sm flex-shrink-0">
                             <span class="avatar-title bg-primary-subtle rounded fs-3">
@@ -53,32 +55,8 @@
             </div><!-- end card -->
         </div><!-- end col -->
 
-        <div class="col-xl-3 col-md-6">
-            <div class="card card-animate bg-primary">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <div class="flex-grow-1">
-                            <p class="text-uppercase fw-medium text-white-50 mb-0">Orders</p>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-end justify-content-between mt-4">
-                        <div>
-                            <h4 class="fs-22 fw-semibold ff-secondary mb-4 text-white"><span class="counter-value"
-                                    data-target="{{get_user_orders_count(Auth::id())}}">0</span></h4>
-                            <a href="{{route('orders')}}" class="text-decoration-underline text-white-50">View all
-                                orders</a>
-                        </div>
-                        <div class="avatar-sm flex-shrink-0">
-                            <span class="avatar-title bg-dark rounded fs-3">
-                                <i class="bx bx-shopping-bag text-white"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div><!-- end card body -->
-            </div><!-- end card -->
-        </div><!-- end col -->
 
-        <div class="col-xl-3 col-md-6">
+        <div class="col-xl-4 col-md-6">
             <!-- card -->
             <div class="card card-animate">
                 <div class="card-body">
@@ -89,7 +67,8 @@
                     </div>
                     <div class="d-flex align-items-end justify-content-between mt-4">
                         <div>
-                            <h4 class="fs-22 fw-semibold ff-secondary mb-4">$<span class="counter-value"
+                            <h4 class="fs-22 fw-semibold ff-secondary mb-4"><i class="fa-solid fa-coins"
+                                    style="color: gold !important;"></i>&nbsp;<span class="counter-value"
                                     data-target="{{get_user_available_balance(Auth::id())}}">0</span></h4>
                             <a href="#" class="text-decoration-underline">Withdraw money</a>
                         </div>
@@ -103,6 +82,8 @@
             </div><!-- end card -->
         </div><!-- end col -->
     </div>
+
+
     <div class="row mt-4">
         <div class="col-xl-12">
             <div class="card bg-primary">
@@ -117,7 +98,7 @@
                                         class="fw-semibold">({{ Auth::user()->referral_code }})</span> or your unique
                                     referral link and earn rewards!<i class="mdi mdi-arrow-down"></i></p>
                                 <div class="mt-3">
-                                    <a id="copyReferralLink" class="btn btn-dark">Copy Referral Link</a>
+                                    <a id="copyReferralLink" class="btn btn-dark">Copy Referral Code</a>
                                 </div>
                             </div>
                         </div>
@@ -136,7 +117,7 @@
 <script>
     document.getElementById('copyReferralLink').addEventListener('click', function () {
         var referralLink = document.createElement('textarea');
-        referralLink.value = '{{ route("register", ["referral_token" => Auth::user()->referral_code]) }}';
+        referralLink.value = '{{  Auth::user()->referral_code }}';
         document.body.appendChild(referralLink);
         referralLink.select();
         document.execCommand('copy');

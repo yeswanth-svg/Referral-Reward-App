@@ -20,15 +20,25 @@
     <link href="{{asset('user/assets/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- Icons Css -->
     <link href="{{asset('user/assets/css/icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <!-- Include FontAwesome for medal icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <!-- App Css-->
     <link href="{{asset('user/assets/css/app.min.css')}}" rel="stylesheet" type="text/css" />
     <!-- custom Css-->
     <link href="{{asset('user/assets/css/custom.min.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('user/assets/css/mystyles.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Jquery and Datatables -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.7/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
     <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-heart-eyes"
+        viewBox="0 0 16 16">
+        <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+        <path
+            d="M11.315 10.014a.5.5 0 0 1 .548.736A4.498 4.498 0 0 1 7.965 13a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .548-.736h.005l.017.005.067.015.252.055c.215.046.515.108.857.169.693.124 1.522.242 2.152.242.63 0 1.46-.118 2.152-.242a26.58 26.58 0 0 0 1.109-.224l.067-.015.017-.004.005-.002zM4.756 4.566c.763-1.424 4.02-.12.952 3.434-4.496-1.596-2.35-4.298-.952-3.434zm6.488 0c1.398-.864 3.544 1.838-.952 3.434-3.067-3.554.19-4.858.952-3.434z" />
+    </svg>
     <style>
         .tree,
         .tree ul,
@@ -256,7 +266,7 @@
                         <li class="nav-item">
                             <a class="nav-link menu-link {{ request()->route()->getName() === 'referral_history' ? 'active' : '' }}"
                                 href="{{route('referral_history')}}">
-                                <i data-feather="dollar-sign" class="icon-dual"></i> <span data-key="t-widgets">Referral
+                                <i class="fa-solid fa-coins"></i>&nbsp; <span data-key="t-widgets">Referral
                                     History</span>
                             </a>
                         </li>
@@ -271,19 +281,13 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link {{ request()->route()->getName() === 'referrals' ? 'active' : '' }}"
-                                href="{{route('referrals')}}">
-                                <i data-feather="users" class="icon-dual"></i> <span
-                                    data-key="t-widgets">Referrals</span>
+                            <a class="nav-link menu-link {{ request()->route()->getName() === 'new_referral' ? 'active' : '' }}"
+                                href="{{route('new_referral')}}">
+                                <i class="fa fa-bar-chart "></i> <span data-key="t-widgets">Leaderboard
+                                </span>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link menu-link {{ request()->route()->getName() === 'orders' ? 'active' : '' }}"
-                                href="{{route('orders')}}">
-                                <i data-feather="shopping-bag" class="icon-dual"></i> <span
-                                    data-key="t-widgets">Orders</span>
-                            </a>
-                        </li>
+
                     </ul>
                 </div>
                 <!-- Sidebar -->

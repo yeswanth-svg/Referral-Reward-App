@@ -35,6 +35,8 @@
     <link href="{{url('/adminpanel/js/plugins/gritter/jquery.gritter.css')}}" rel="stylesheet">
     <link href="{{url('/adminpanel/css/animate.css')}}" rel="stylesheet">
     <link href="{{url('/adminpanel/css/style.css')}}" rel="stylesheet">
+    <!-- nice selector-->
+    <link href="{{asset('assets/css/nice-select.css')}}" rel="stylesheet">
     <style>
         a {
             text-decoration: none;
@@ -190,27 +192,27 @@
                         <a href="{{route('admin.dashboard')}}"><i class="fa fa-th-large"></i> <span
                                 class="nav-label">Dashboard</span></a>
                     </li>
-                    <li {{ Str::contains(request()->path(), 'user') ? "class=active" : '' }}>
+                    <li {{ Str::contains(request()->path(), 'partners') ? "class=active" : '' }}>
                         <a href="{{route('admin.users')}}"><i class="fa fa-table"></i> <span
-                                class="nav-label">Users</span></a>
+                                class="nav-label">Partners</span></a>
                     </li>
 
-                    <li {{ Str::contains(request()->path(), 'user') ? "class=active" : '' }}>
+                    <li {{ Str::contains(request()->path(), 'referral_history') ? "class=active" : '' }}>
                         <a href="{{route('admin.referral_history')}}"><i class="fa fa-table"></i> <span
                                 class="nav-label">Referral History</span></a>
                     </li>
 
                     <li {{ request()->route()->getName() === 'admin.products' ? "class=active" : '' }}>
                         <a href="{{route('admin.products')}}"><i class="fa fa-shopping-cart"></i> <span
-                                class="nav-label">Products</span></a>
+                                class="nav-label">Services</span></a>
                     </li>
-                    <li {{ request()->route()->getName() === 'admin.commission-levels' ? "class=active" : '' }}>
-                        <a href="{{route('admin.commission-levels')}}"><i class="fa fa-calculator"></i> <span
-                                class="nav-label">Commssion Levels</span></a>
+                    <li {{ request()->route()->getName() === 'admin.credits' ? "class=active" : '' }}>
+                        <a href="{{route('admin.credits')}}"><i class="fa fa-calculator"></i> <span
+                                class="nav-label">Credits</span></a>
                     </li>
-                    <li {{ request()->route()->getName() === 'admin.orders' ? "class=active" : '' }}>
-                        <a href="{{route('admin.orders')}}"><i class="fa fa-shopping-cart"></i> <span
-                                class="nav-label">Orders</span></a>
+                    <li {{ request()->route()->getName() === 'admin.leaderboard' ? "class=active" : '' }}>
+                        <a href="{{route('admin.leaderboard')}}"><i class="fa fa-bar-chart "></i> <span
+                                class="nav-label">Leaderboard</span></a>
                     </li>
                 </ul>
             </div>
@@ -303,6 +305,9 @@
 
     <!-- Toastr -->
     <script src="{{url('/adminpanel/js/plugins/toastr/toastr.min.js')}}"></script>
+
+    <!-- nice selector -->
+    <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
 
     <script>
         // document ready jquery

@@ -109,6 +109,8 @@ class HomeController extends Controller
         $user = User::find(Auth::id());
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->area = $request->area;
+        $user->city = $request->city;
         $user->save();
 
         if ($request->hasFile('image')) {

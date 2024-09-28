@@ -17,7 +17,7 @@
         @endif
         <div class="ibox">
             <div class="ibox-title d-flex justify-content-between align-items-center">
-                <h5>Commsion Percentage Levels</h5>
+                <h5>Credits for Products</h5>
             </div>
             <div class="ibox-content">
                 <div class="table-responsive">
@@ -25,21 +25,21 @@
                         <thead>
                             <tr>
                                 <th>#</th>
-                                <th>Level</th>
-                                <th>Credits Upon Completion</th>
+                                <th>Product Name</th>
+                                <th>Credits</th>
                                 <th class="">Action</th>
                             </tr>
                         </thead>
                         <tbody id="ihub-news-records">
-                            @foreach($levels as $level)
+                            @foreach($credits as $credit)
                                 <tr class="gradeX" style="cursor: pointer;">
                                     <td>{{$loop->iteration}}</td>
-                                    <td>Credits For Completed Referal</td>
-                                    <td>{{$level->credits}}</td>
+                                    <td>{{$credit->service_name}}</td> <!-- Replace with actual product name -->
+                                    <td>{{$credit->credit_value}}</td>
                                     <td class="">
                                         <button type="button" class="btn btn-dark btn-sm btn-block" id="edit_button"
-                                            data-bs-toggle="modal" data-bs-target="#editRecord" data-id="{{$level->id}}"
-                                            data-parent_level="{{$level->parent_level}}" data-credits="{{$level->credits}}">
+                                            data-bs-toggle="modal" data-bs-target="#editRecord" data-id="{{$credit->id}}"
+                                            data-credit_value="{{$credit->credit_value}}">
                                             <i class="fa fa-edit"> </i> Edit
                                         </button>
                                     </td>
@@ -58,24 +58,19 @@
     <div class="modal-dialog modal-dialog-scrollable modal-md">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Edit Record</h3>
+                <h3 class="modal-title" id="exampleModalLabel">Edit Credits</h3>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.commission-levels-update') }}" method="post" id="editRecordForm">
+                <form action="{{ route('admin.credits-update') }}" method="post" id="editRecordForm">
                     @csrf
-                    <input type="text" name="id" id="edit_id" hidden>
+                    <input type="hidden" name="id" id="edit_id">
 
                     <div class="row mb-2">
-                        <div class="col">
-                            <div class="row mb-2">
-                                <div class="col-12">
-                                    <h4><label for="exampleInputEmail1" class="form-label">Commsion Percentage of Order
-                                            Amount</label></h4>
-                                    <input type="number" class="form-control" name="credits"
-                                        id="edit_commission_percentage" required>
-                                </div>
-                            </div>
+                        <div class="col-12">
+                            <h4><label for="credit_value" class="form-label">Credits</label></h4>
+                            <input type="number" class="form-control" name="credit_value" id="edit_credit_value"
+                                required>
                         </div>
                     </div>
                 </form>
@@ -87,32 +82,25 @@
         </div>
     </div>
 </div>
+
 <script>
     $(document).ready(function () {
         $(".alert").delay(2000).slideUp(200, function () {
             $(this).alert('close');
         });
+
         $('.dataTables-example').DataTable({
             pageLength: 10,
             responsive: true,
         });
-        $('[data-toggle="tooltip"]').tooltip();
+
         $('#editRecord').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget); // Button that triggered the modal
             var id = button.data('id');
-            var parent_level = button.data('parent_level');
-            if (parent_level == 1) {
-                parent_level = 'Parent Affiliate Level 1';
-            } else if (parent_level == 2) {
-                parent_level = 'Parent Affiliate Level 2';
-            } else if (parent_level == 3) {
-                parent_level = 'Parent Affiliate Level 3';
-            }
-            var commission_percentage = button.data('commission_percentage');
+            var credit_value = button.data('credit_value');
 
-            $('#edit_parent_level').val(parent_level);
             $('#edit_id').val(id);
-            $('#edit_commission_percentage').val(commission_percentage);
+            $('#edit_credit_value').val(credit_value);
         });
     });
 </script>

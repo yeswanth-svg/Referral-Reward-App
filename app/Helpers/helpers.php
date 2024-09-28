@@ -81,7 +81,7 @@ if (!function_exists('tree_builder')) {
         $children = get_all_children($user_id);
 
         $html = '<ul class="tree">
-            ' . ($great_grandparent ? '<li><span><img src="' . asset('uploads/profile/' . ($great_grandparent ? ($great_grandparent['image'] ? $great_grandparent['image'] : 'avatar.jpg') : 'avatar.jpg')) . ' "style="width:40px; height:40px; border-radius: 100px;"><br><h6 class="mt-3"><b>' . ($great_grandparent ? $great_grandparent['name'] : '') . '</b></h6><p>Parent Affiliate Level 3</p></span>' :  '<li>') . '
+            ' . ($great_grandparent ? '<li><span><img src="' . asset('uploads/profile/' . ($great_grandparent ? ($great_grandparent['image'] ? $great_grandparent['image'] : 'avatar.jpg') : 'avatar.jpg')) . ' "style="width:40px; height:40px; border-radius: 100px;"><br><h6 class="mt-3"><b>' . ($great_grandparent ? $great_grandparent['name'] : '') . '</b></h6><p>Parent Affiliate Level 3</p></span>' : '<li>') . '
             <ul>
                 ' . ($grandparent ? '<li><span><img src="' . asset('uploads/profile/' . ($grandparent ? ($grandparent['image'] ? $grandparent['image'] : 'avatar.jpg') : 'avatar.jpg')) . ' "style="width:40px; height:40px; border-radius: 100px;"><br><h6 class="mt-3"><b>' . ($grandparent ? $grandparent['name'] : '') . '</b></h6><p>Parent Affiliate Level 2</p></span>' : '<li>') . '
                     <ul>
@@ -290,15 +290,15 @@ if (!function_exists('get_user_image')) {
 if (!function_exists('get_user_available_balance')) {
     function get_user_available_balance($user_id)
     {
-        $user = \App\Models\UserEarning::where('user_id', $user_id)->first();
-        return $user ? $user->available_balance : null;
+        $user = \App\Models\User::where('id', $user_id)->first();
+        return $user ? $user->withdrawal_credits : null;
     }
 }
 if (!function_exists('get_user_total_earnings')) {
     function get_user_total_earnings($user_id)
     {
-        $user = \App\Models\UserEarning::where('user_id', $user_id)->first();
-        return $user ? $user->total_earnings : null;
+        $user = \App\Models\User::where('id', $user_id)->first();
+        return $user ? $user->total_credits : null;
     }
 }
 if (!function_exists('get_user_orders_count')) {
@@ -312,7 +312,7 @@ if (!function_exists('get_user_referrals_count')) {
     function get_user_referrals_count($user_id)
     {
         // affiliate table records count  where parent_id = $user_id
-        $user = \App\Models\Affiliate::where('parent_id', $user_id)->count();
+        $user = \App\Models\Leads::where('user_id', $user_id)->count();
         return $user;
     }
 }

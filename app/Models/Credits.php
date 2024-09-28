@@ -11,7 +11,14 @@ class Credits extends Model
 
     protected $table = 'credits';
     protected $fillable = [
-        'parent_level',
-        'credits',
+        'product_id',
+        'service_name',
+        'credit_value',
     ];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
+

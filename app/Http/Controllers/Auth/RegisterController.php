@@ -30,30 +30,63 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'area' => ['required', 'string',],
+            'city' => ['required', 'string',],
+            'aadhar_number' => ['required', 'numeric', 'min:12',],
         ]);
     }
 
     protected function create(array $data)
     {
+        // Validate the request data including the image
+        $request = request();  // Get the request instance
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'area' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'aadhar_number' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',  // Validate image
+        ]);
+
+        // Create the user record
         $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'referral_code' => $this->generateReferralCode(),
+            'area' => $data['area'],
+            'city' => $data['city'],
+            'aadhar_number' => $data['aadhar_number'],
         ]);
 
-        // Create an affiliate record for the user
-        $affiliate = Affiliate::create([
-            'user_id' => $user->id,
-            'parent_id' => $this->getParentId($data['referral_code']),
-        ]);
+        // Check if an image is uploaded
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $extension = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $extension;
+
+            // Move the file to the 'uploads/profile/' directory
+            $file->move(public_path('uploads/profile/'), $filename);
+
+            // Save the image path to the user's record
+            $user->image = $filename;
+            $user->save();
+        }
+
+
 
         return $user;
     }
+
+
+
+
     protected function registered(Request $request, $user)
     {
         $this->moveItemsFromSessionToDatabase($user->id);
-        if(session()->has('checkout')) {
+        if (session()->has('checkout')) {
             return redirect()->route('checkout');
         }
         // if user doesn't have a record in UserEarning then create one

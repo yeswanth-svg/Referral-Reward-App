@@ -25,7 +25,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'referral_code',
         'status',
         'password',
-        'credits',
+        'area',
+        'city',
+        'aadhar_number',
+        'image',
     ];
 
     /**
@@ -68,4 +71,10 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(Affiliate::class, 'parent_id');
     }
+
+    public function leads()
+    {
+        return $this->hasMany(Leads::class, 'user_id'); // Adjust 'user_id' to match your foreign key
+    }
+
 }

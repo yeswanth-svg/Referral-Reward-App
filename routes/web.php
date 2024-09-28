@@ -7,7 +7,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\UserManagementController;
 use App\Http\Controllers\Store\ShopController;
 use App\Http\Controllers\Admin\ProductsController;
-use App\Http\Controllers\Admin\CommissionLevelsController;
+use App\Http\Controllers\Admin\CreditsLevelsController;
 use App\Http\Controllers\Admin\OrdersController;
 /*
 |--------------------------------------------------------------------------
@@ -47,19 +47,19 @@ Route::prefix('admin')->group(function () {
         Route::post('/editAdminProfile', [DashboardController::class, 'editProfile'])->name('admin.editProfile');
         Route::post('/editAdminPassword', [DashboardController::class, 'editPassword'])->name('admin.editPassword');
 
-        Route::get('/users', [UserManagementController::class, 'index'])->name('admin.users');
-        Route::get('/user-view/{id}', [UserManagementController::class, 'view'])->name('admin.user-view');
-        Route::post('/user-activate', [UserManagementController::class, 'activate'])->name('admin.user-activate');
-        Route::post('/user-deactivate', [UserManagementController::class, 'deactivate'])->name('admin.user-deactivate');
-        Route::post('/user-delete', [UserManagementController::class, 'delete'])->name('admin.user-delete');
+        Route::get('/partners', [UserManagementController::class, 'index'])->name('admin.users');
+        Route::get('/partners-view/{id}', [UserManagementController::class, 'view'])->name('admin.user-view');
+        Route::post('/partners-activate', [UserManagementController::class, 'activate'])->name('admin.user-activate');
+        Route::post('/partners-deactivate', [UserManagementController::class, 'deactivate'])->name('admin.user-deactivate');
+        Route::post('/partners-delete', [UserManagementController::class, 'delete'])->name('admin.user-delete');
 
         Route::get('/products', [ProductsController::class, 'index'])->name('admin.products');
         Route::post('/products-store', [ProductsController::class, 'store'])->name('admin.products-store');
         Route::post('/products-update', [ProductsController::class, 'update'])->name('admin.products-update');
         Route::post('/products-delete', [ProductsController::class, 'delete'])->name('admin.products-delete');
 
-        Route::get('/commission-levels', [CommissionLevelsController::class, 'index'])->name('admin.commission-levels');
-        Route::post('/commission-levels-update', [CommissionLevelsController::class, 'update'])->name('admin.commission-levels-update');
+        Route::get('/credits', [CreditsLevelsController::class, 'index'])->name('admin.credits');
+        Route::post('/credits-update', [CreditsLevelsController::class, 'update'])->name('admin.credits-update');
 
         Route::get('/orders', [OrdersController::class, 'index'])->name('admin.orders');
         Route::get('/order-details/{order_number}', [OrdersController::class, 'details'])->name('admin.order-details');
@@ -68,6 +68,8 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/referral_history', [DashboardController::class, 'referral_history'])->name('admin.referral_history');
         Route::put('/referral-status/{id}', [DashboardController::class, 'updateReferralStatus'])->name('admin.update-status');
+
+        Route::get('/leaderboard', [DashboardController::class, 'leaderboard'])->name('admin.leaderboard');
 
     });
 });
