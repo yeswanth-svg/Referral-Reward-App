@@ -9,6 +9,7 @@ use App\Http\Controllers\Store\ShopController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\CreditsLevelsController;
 use App\Http\Controllers\Admin\OrdersController;
+use App\Http\Controllers\Admin\GalleryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,14 +21,15 @@ use App\Http\Controllers\Admin\OrdersController;
 |
 */
 Route::get('/', [ShopController::class, 'index'])->name('welcome');
-Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
-Route::get('/product/{slug}', [ShopController::class, 'product'])->name('product');
+Route::get('/services', [ShopController::class, 'shop'])->name('shop');
+Route::get('/services/{slug}', [ShopController::class, 'product'])->name('product');
 Route::post('cart-store', [ShopController::class, 'cartStore'])->name('cart-store');
 Route::post('simple-cart-store', [ShopController::class, 'cartStoreSimple'])->name('simple-cart-store');
 Route::get('/cart', [ShopController::class, 'cart'])->name('cart');
 Route::get('/update-cart/{cartItemId}/{newQuantity}', [ShopController::class, 'updateCart'])->name('update.cart');
 Route::get('/remove-cart-item/{cartItemId}', [ShopController::class, 'removeCartItem']);
 Route::get('checkout', [ShopController::class, 'checkout'])->name('checkout');
+Route::get('/gallery', [ShopController::class, 'gallery'])->name('user.gallery');
 
 
 // User routes
@@ -71,6 +73,12 @@ Route::prefix('admin')->group(function () {
 
         Route::get('/leaderboard', [DashboardController::class, 'leaderboard'])->name('admin.leaderboard');
 
+        Route::get('/gallery', [GalleryController::class, 'index'])->name('admin.gallery');
+        Route::post('/gallery/upload', [GalleryController::class, 'upload'])->name('admin.gallery.upload');
+        Route::delete('/gallery/delete/{id}', [GalleryController::class, 'deleteImage'])->name('admin.delete.image');
+        Route::get('/gallery/view-image/{id}', [GalleryController::class, 'view-image'])->name('admin.gallery.view-image');
+
+
     });
 });
 
@@ -85,3 +93,6 @@ Route::get('show-order/{order_number}', [ShopController::class, 'showOrder'])->n
 
 Route::get('/newreferral', [App\Http\Controllers\HomeController::class, 'open_referral'])->name('open_referral');
 Route::post('/newreferral', [App\Http\Controllers\HomeController::class, 'generate_referral'])->name('new_referral');
+
+
+Route::get('/user-leaderboard', [App\Http\Controllers\HomeController::class, 'Userleaderboard'])->name('user_leaderboard');

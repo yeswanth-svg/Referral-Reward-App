@@ -281,8 +281,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link menu-link {{ request()->route()->getName() === 'new_referral' ? 'active' : '' }}"
-                                href="{{route('new_referral')}}">
+                            <a class="nav-link menu-link {{ request()->route()->getName() === 'user_leaderboard' ? 'active' : '' }}"
+                                href="{{route('user_leaderboard')}}">
                                 <i class="fa fa-bar-chart "></i> <span data-key="t-widgets">Leaderboard
                                 </span>
                             </a>

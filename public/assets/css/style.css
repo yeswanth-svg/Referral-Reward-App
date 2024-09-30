@@ -5487,7 +5487,6 @@ div#mCSB_1_container {
 }
 
 .shop-block-three .inner-box:hover .image-box img {
-    opacity: 0.3;
     transform: scale(1.05);
 }
 
@@ -9962,4 +9961,60 @@ div#mCSB_1_container {
 .client-info span {
     font-size: 14px; /* Font size for client designation */
     color: #7f8c8d; /* Lighter color for designation */
+}
+
+/* for products Icons Styles */
+
+.owl-theme .owl-dots {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    width: 12px;
+    height: 12px;
+    background: #ddd;
+    display: block;
+    border-radius: 50%;
+    margin: 5px;
+    transition: background 0.3s ease;
+}
+
+.owl-theme .owl-dots .owl-dot.active span {
+    background: #333; /* Change this to your primary color */
+}
+
+/* Style and Center the Arrows Below the Carousel */
+.owl-theme .owl-nav {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.owl-theme.products .owl-nav .owl-prev,
+.owl-theme.products .owl-nav .owl-next {
+    background-color: #333; /* Background color of the arrows */
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 20px;
+    transition: background 0.3s ease;
+    margin: 0 10px; /* Space between the arrows */
+}
+
+.owl-theme.products .owl-nav .owl-prev:hover,
+.owl-theme.products .owl-nav .owl-next:hover {
+    background-color: #555; /* Hover color */
+}
+
+/* Optional: Adjust the arrow icons */
+.owl-theme .owl-nav .owl-prev::before,
+.owl-theme .owl-nav .owl-next::before {
+    font-family: "Font Awesome 5 Free"; /* Use font-awesome or any icon library */
+
+    font-weight: 900;
+}
+
+.owl-theme .owl-nav .owl-next::before {
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\GalleryImage;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Order;
@@ -123,4 +124,36 @@ class HomeController extends Controller
         }
         return redirect()->back()->with('success', 'Your profile is updated successfully');
     }
+
+
+    public function Userleaderboard(Request $request)
+    {
+        // Get selected city from the request
+        $selectedCity = $request->input('city');
+
+        // Fetch users based on the selected city or get all users
+        $query = User::query();
+
+        if ($selectedCity) {
+            $query->where('city', $selectedCity);
+        }
+
+        // Get the top users based on total credits
+        $topUsers = $query->orderBy('total_credits', 'desc')->take(10)->get();
+
+        // Get the user's position among all users
+        $user = auth()->user(); // Assuming you're using Laravel's built-in authentication
+        $userPosition = User::query()
+            ->when($selectedCity, function ($q) use ($selectedCity) {
+                return $q->where('city', $selectedCity);
+            })
+            ->orderBy('total_credits', 'desc')
+            ->pluck('id') // Only get the IDs to check the position
+            ->search($user->id) + 1; // Find the index and add 1 to get the rank
+
+        return view('user.leaderboard', compact('topUsers', 'userPosition'));
+    }
+
+
+
 }

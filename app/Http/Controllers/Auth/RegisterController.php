@@ -127,11 +127,15 @@ class RegisterController extends Controller
     protected function generateReferralCode()
     {
         do {
-            $referralCode = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 8);
+            // Generate random numbers of length 5
+            $randomNumbers = substr(str_shuffle("0123456789"), 0, 5);
+            // Prepend the static "D-" prefix
+            $referralCode = 'D-' . $randomNumbers;
         } while (User::where('referral_code', $referralCode)->exists());
 
         return $referralCode;
     }
+
 
     protected function getParentId($referralCode)
     {

@@ -8,6 +8,7 @@ use App\Models\Admin;
 use App\Models\Leads;
 use App\Models\User;
 use App\Models\Credits;
+use App\Models\Product;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\CreditPointsAdded;
 use Illuminate\Support\Facades\Mail;
@@ -17,7 +18,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $total_partners = User::all()->count();
+        $total_leads = Leads::all()->count();
+        $total_services = Product::all()->count();
+        $total_credits = User::sum('total_credits'); // Sum total_credits from the User table
+
+        return view('admin.dashboard', compact('total_partners', 'total_leads', 'total_services', 'total_credits'));
     }
     public function editPassword(Request $request)
     {
@@ -133,6 +139,10 @@ class DashboardController extends Controller
 
         return view('admin.leaderboard', compact('topUsers'));
     }
+
+
+
+
 
 
 

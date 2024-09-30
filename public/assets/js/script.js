@@ -805,3 +805,23 @@ $(document).ready(function () {
         ], // Custom navigation text
     });
 });
+
+//for the products
+
+$(document).ready(function () {
+    $(".products").owlCarousel({
+        items: 3, // Number of items per view
+        margin: 10, // Space between items
+        nav: true, // Show arrows
+        dots: false, // Show dots
+        loop: true, // Enable looping
+        autoplay: true, // Enable autoplay
+        autoplayTimeout: 3000, // Autoplay delay
+        navText: ["<", ">"], // Custom text for navigation
+        responsive: {
+            0: { items: 1 },
+            600: { items: 2 },
+            1000: { items: 3 },
+        },
+    });
+});

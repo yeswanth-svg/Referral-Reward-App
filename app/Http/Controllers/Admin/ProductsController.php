@@ -74,22 +74,6 @@ class ProductsController extends Controller
 
     public function update(Request $request)
     {
-        // Validate the request data
-
-
-
-
-        $validator = Validator::make($request->all(), [
-            'name' => 'required|max:255',
-            'short_description' => 'required',
-            'description' => 'required',
-        ]);
-
-        // If validation fails, redirect back with errors
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
         // Determine the status
         $status = isset($request->status) ? 1 : 0;
 
@@ -99,24 +83,12 @@ class ProductsController extends Controller
         // Find the product by ID
         $product = Product::find($request->id);
 
-
         // Check if the product exists
         if (!$product) {
             return redirect()->back()->with('error', 'Product not found!');
         }
 
-        // Handle file upload
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $name = time() . '.' . $image->getClientOriginalName();
-            $destinationPath = public_path('/uploads/products');
-            $image->move($destinationPath, $name);
-
-            // Add image name to the update data
-            $productData['image'] = $name;
-        }
-
-        // Prepare the data to update
+        // Prepare the data to update (without image initially)
         $productData = [
             'name' => $request->name,
             'short_description' => $request->short_description,
@@ -126,22 +98,31 @@ class ProductsController extends Controller
             'status' => $status,
         ];
 
-        // Update the product
+        // Handle file upload
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = time() . '.' . $image->getClientOriginalName();
+            $destinationPath = public_path('/uploads/products');
+            $image->move($destinationPath, $name);
+
+            // Add image name to the update data
+            $productData['image'] = $name; // Now this is added to the update array
+        }
+
+        // Update the product with all the data (including image if available)
         $product->update($productData);
-
-
 
         // Update credit value in the credits table if necessary
         $credit = Credits::where('product_id', $product->id)->first();
         if ($credit) {
             $credit->update([
-
                 'service_name' => $product->name,
             ]);
         }
 
         return redirect()->back()->with('success', 'Product updated successfully!');
     }
+
 
     public function delete(Request $request)
     {

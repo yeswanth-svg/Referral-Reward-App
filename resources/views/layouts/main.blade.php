@@ -20,6 +20,8 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <!-- Include FontAwesome for medal icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <!-- Stylesheets -->
     <link href="{{asset('assets/css/font-awesome-all.css')}}" rel="stylesheet">
@@ -67,8 +69,9 @@
             <div class="header-upper">
                 <div class="large-container">
                     <div class="upper-inner">
-                        <figure class="logo-box"><a href="{{route('welcome')}}"><img
-                                    src="{{asset('assets/images/logo.png')}}" alt=""></a></figure>
+                        <!-- <figure class="logo-box"><a href="{{route('welcome')}}"><img
+                                    src="{{asset('assets/images/logo.png')}}" alt=""></a></figure> -->
+                        <h3 class="text-dark fs-1 fw-bolder">D2D Partner</h3>
                         <div class="menu-area">
                             <!--Mobile Navigation Toggler-->
                             <div class="mobile-nav-toggler">
@@ -81,10 +84,10 @@
                                     <ul class="navigation clearfix">
                                         <li class="{{request()->route()->getName() === 'welcome' ? 'current' : ''}}"><a
                                                 href="{{route('welcome')}}">Home</a></li>
-                                        <li class="{{request()->route()->getName() === 'shop' ? 'current' : ''}}"><a
-                                                href="{{route('shop')}}">Shop<span>Hot</span></a></li>
+                                        <li class="{{request()->route()->getName() === 'services' ? 'current' : ''}}"><a
+                                                href="{{route('shop')}}">Services<span>Hot</span></a></li>
                                         <li class="{{request()->route()->getName() === 'gallery' ? 'current' : ''}}"><a
-                                                href="{{route('welcome')}}">Gallery</a></li>
+                                                href="{{route('user.gallery')}}">Gallery</a></li>
 
                                         <li><a href="">Contact</a></li>
                                     </ul>
@@ -92,10 +95,8 @@
                             </nav>
                         </div>
                         <ul class="menu-right-content clearfix">
-                            <li><a href="{{route('login')}}"><i class="flaticon-user"></i></a></li>
-                            <li class="shop-cart"><a href="{{route('cart')}}"><i
-                                        class="flaticon-shopping-cart-1"></i><span
-                                        id="item-count">{{count_cart_items()}}</span></a></li>
+                            <li><a href="{{route('login')}}">Login / Register</a></li>
+
                         </ul>
                     </div>
                 </div>
@@ -125,8 +126,9 @@
                 <div class="auto-container">
                     <div class="outer-box clearfix">
                         <div class="logo-box pull-left">
-                            <figure class="logo"><a href="{{route('welcome')}}"><img
-                                        src="{{asset('assets/images/small-logo.png')}}" alt=""></a></figure>
+                            <!-- <figure class="logo"><a href="{{route('welcome')}}"><img
+                                        src="{{asset('assets/images/small-logo.png')}}" alt=""></a></figure> -->
+                            <h3 class="text-dark fw-bolder mt-4">D2D Partner</h3>
                         </div>
                         <div class="menu-area pull-right">
                             <nav class="main-menu clearfix">
@@ -179,38 +181,21 @@
                             <div class="row clearfix">
                                 <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
                                     <div class="footer-widget logo-widget">
-                                        <figure class="footer-logo"><a href="{{route('welcome')}}"><img
-                                                    src="{{asset('assets/images/footer-logo-2.png')}}" alt=""></a>
-                                        </figure>
+                                        <h3 class="text-light fs-1 fw-bolder">D2D Partner</h3>
                                     </div>
                                 </div>
+
                                 <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
                                     <div class="footer-widget links-widget">
                                         <div class="widget-title">
-                                            <h3>Category</h3>
+                                            <h3>Menu</h3>
                                         </div>
                                         <div class="widget-content">
                                             <ul class="links-list clearfix">
-                                                <li><a href="{{route('welcome')}}">Men</a></li>
-                                                <li><a href="{{route('welcome')}}">Women</a></li>
-                                                <li><a href="{{route('welcome')}}">Kids</a></li>
-                                                <li><a href="{{route('welcome')}}">Accessories</a></li>
-                                                <li><a href="{{route('welcome')}}">Shoe</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-md-4 col-sm-12 footer-column">
-                                    <div class="footer-widget links-widget">
-                                        <div class="widget-title">
-                                            <h3>Useful Link</h3>
-                                        </div>
-                                        <div class="widget-content">
-                                            <ul class="links-list clearfix">
-                                                <li><a href="{{route('welcome')}}">News & Tips</a></li>
-                                                <li><a href="{{route('welcome')}}">About Us</a></li>
-                                                <li><a href="{{route('welcome')}}">Terms & Conditions</a></li>
-                                                <li><a href="{{route('welcome')}}">Our Shop</a></li>
+                                                <li><a href="{{route('welcome')}}">Home</a></li>
+                                                <li><a href="{{route('welcome')}}">Services</a></li>
+                                                <li><a href="{{route('welcome')}}">Gallery</a></li>
+                                                <!-- <li><a href="{{route('welcome')}}"></a></li> -->
                                                 <li><a href="{{route('welcome')}}">Contact Us</a></li>
                                             </ul>
                                         </div>
@@ -259,24 +244,14 @@
             </div>
             <div class="footer-bottom">
                 <div class="auto-container clearfix">
-                    <ul class="cart-list pull-left clearfix">
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-1.png')}}"
-                                    alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-2.png')}}"
-                                    alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-3.png')}}"
-                                    alt=""></a></li>
-                        <li><a href="{{route('welcome')}}"><img src="{{asset('assets/images/resource/card-4.png')}}"
-                                    alt=""></a></li>
-                    </ul>
-                    <div class="copyright pull-right">
+                    <div class="copyright text-center">
                         <ul class="footer-social clearfix">
                             <li><a href="{{route('welcome')}}"><i class="fab fa-facebook-f"></i></a></li>
                             <li><a href="{{route('welcome')}}"><i class="fab fa-twitter"></i></a></li>
                             <li><a href="{{route('welcome')}}"><i class="fab fa-vimeo-v"></i></a></li>
                             <li><a href="{{route('welcome')}}"><i class="fab fa-google-plus-g"></i></a></li>
                         </ul>
-                        <p><a href="{{route('welcome')}}">Castro</a> &copy; 2023 All Right Reserved</p>
+                        <p><a href="{{route('welcome')}}">d2dPartner</a> &copy; 2024 All Right Reserved</p>
                     </div>
                 </div>
             </div>

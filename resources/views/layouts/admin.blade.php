@@ -37,6 +37,10 @@
     <link href="{{url('/adminpanel/css/style.css')}}" rel="stylesheet">
     <!-- nice selector-->
     <link href="{{asset('assets/css/nice-select.css')}}" rel="stylesheet">
+    <!-- dropzone -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/dropzone.min.css" />
+
+
     <style>
         a {
             text-decoration: none;
@@ -214,6 +218,10 @@
                         <a href="{{route('admin.leaderboard')}}"><i class="fa fa-bar-chart "></i> <span
                                 class="nav-label">Leaderboard</span></a>
                     </li>
+                    <li {{ request()->route()->getName() === 'admin.gallery' ? "class=active" : '' }}>
+                        <a href="{{route('admin.gallery')}}"><i class="fa fa-bar-chart "></i> <span
+                                class="nav-label">Gallery</span></a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -308,6 +316,9 @@
 
     <!-- nice selector -->
     <script src="{{asset('assets/js/jquery.nice-select.min.js')}}"></script>
+
+    <!-- dropzone -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
 
     <script>
         // document ready jquery

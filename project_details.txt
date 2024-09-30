@@ -1,0 +1,24 @@
+MySQL details:
+DB: d2dpartner_db
+user: d2dpartner_user
+ps: c*****y*.*2
+host: 103.160.107.213
+
+
+cpanel:
+d2dpartner
+cloudeye.12
+
+email:
+support@d2dpartner.in
+d2d@partner123
+
+
+
+Admin gallery-->completed
+
+User admin withdrawl credits requests and acceptance and everything
+
+Adding the testimonials from the admin panel
+
+Adding the single page for all the leaderboard for all the users and city

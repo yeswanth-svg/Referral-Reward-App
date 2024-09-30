@@ -12,6 +12,7 @@ use App\Models\Product;
 use App\Models\Cart;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\GalleryImage;
 use Illuminate\Support\Facades\Validator;
 
 class ShopController extends Controller
@@ -19,8 +20,11 @@ class ShopController extends Controller
     public function index()
     {
         // fetch 3 products from database with status = 1
-        $products = Product::where('status', 1)->take(3)->get();
-        return view('welcome', compact('products'));
+        $products = Product::where('status', 1)->get();
+        // Fetch top 10 or 50 users with the highest total_credits
+        $topUsers = User::orderBy('total_credits', 'desc')->take(3)->get();
+        $top10Users = User::orderBy('total_credits', 'desc')->take(10)->get();
+        return view('welcome', compact('products', 'topUsers', 'top10Users'));
     }
     public function shop()
     {
@@ -243,7 +247,7 @@ class ShopController extends Controller
     }
     public function checkout()
     {
-        
+
 
         if (!Auth::check()) {
             // if cart in session is empty then redirect to shop page
@@ -304,7 +308,7 @@ class ShopController extends Controller
         }
         $shopper = User::where('id', auth()->id())->first();
         $parent = get_parent($shopper->id);
-        
+
         $grandparent = [];
         $greatgrandparent = [];
 
@@ -325,7 +329,7 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $parent->id)->first();
-            if($user_earning == null){
+            if ($user_earning == null) {
                 $user_earning = new UserEarning([
                     'user_id' => $parent->id,
                     'total_earnings' => 0,
@@ -356,7 +360,7 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $grandparent->id)->first();
-            if($user_earning == null){
+            if ($user_earning == null) {
                 $user_earning = new UserEarning([
                     'user_id' => $grandparent->id,
                     'total_earnings' => 0,
@@ -386,7 +390,7 @@ class ShopController extends Controller
             ]);
             $user_commission->save();
             $user_earning = UserEarning::where('user_id', $greatgrandparent->id)->first();
-            if($user_earning == null){
+            if ($user_earning == null) {
                 $user_earning = new UserEarning([
                     'user_id' => $greatgrandparent->id,
                     'total_earnings' => 0,
@@ -409,5 +413,15 @@ class ShopController extends Controller
         }
         $order = Order::where('order_number', $order_number)->with('items')->first();
         return view('store.order', compact('order'));
+    }
+
+
+    public function gallery()
+    {
+        // / Fetch all images from the database
+        $images = GalleryImage::all(); // Adjust this to your needs, e.g., add pagination
+
+        // Pass the images to the view
+        return view('user.gallery', compact('images'));
     }
 }

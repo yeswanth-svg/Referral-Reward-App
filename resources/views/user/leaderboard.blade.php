@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+@extends('layouts.app')
 @section('content')
 <!-- Include FontAwesome for medal icons -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -12,6 +12,7 @@
     <div class="ibox">
         <div class="ibox-title d-flex justify-content-between align-items-center">
             <h5>Leaderboard</h5>
+            <p><span class="fs-4 fw-bold text-info">Your Postion : {{$userPosition}}</span></p>
         </div>
         <div class="ibox-content">
             <!-- City Selection Form -->
@@ -112,7 +113,7 @@
             </form>
             <div class="table-responsive">
                 <table class="table table-striped table-bordered table-hover dataTables-example" id="tickersTable">
-                    <thead class="table-dark text-dark text-center">
+                    <thead class="table-dark  text-center">
                         <th>Rank</th>
                         <th>User</th>
                         <th>City / Region</th>
