@@ -30,6 +30,9 @@ Route::get('/update-cart/{cartItemId}/{newQuantity}', [ShopController::class, 'u
 Route::get('/remove-cart-item/{cartItemId}', [ShopController::class, 'removeCartItem']);
 Route::get('checkout', [ShopController::class, 'checkout'])->name('checkout');
 Route::get('/gallery', [ShopController::class, 'gallery'])->name('user.gallery');
+Route::get('/about_us', [ShopController::class, 'about_us'])->name('about_us');
+Route::get('/contact', [ShopController::class, 'contact_us'])->name('contact');
+Route::post('/contact/send', [ShopController::class, 'sendEmail'])->name('send.contact.email');
 
 
 // User routes

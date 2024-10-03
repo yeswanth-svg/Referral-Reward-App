@@ -14,6 +14,8 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\GalleryImage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ContactFormMail;
 
 class ShopController extends Controller
 {
@@ -424,4 +426,44 @@ class ShopController extends Controller
         // Pass the images to the view
         return view('user.gallery', compact('images'));
     }
+
+
+    public function about_us()
+    {
+        return view('user.about');
+    }
+
+    public function contact_us()
+    {
+        return view('user.contact');
+    }
+
+    public function sendEmail(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'subject' => 'required|string|max:255',
+            'message' => 'required|string',
+        ]);
+
+        // Debug: Log the values
+        \Log::info('Sending email with data:', $validated);
+
+
+        $contactFormMail = new ContactFormMail(
+            $validated['name'],
+            $validated['email'],
+            $validated['subject'],
+            $validated['message']
+        );
+
+        $contactFormMail->setBody($validated['name'], $validated['email'], $validated['subject'], $validated['message']);
+
+        Mail::to(env('MAIL_TO_ADDRESS', 'support@skilljo.tech'))->send($contactFormMail);
+
+        return redirect()->back()->with('success', 'Your message has been sent successfully!');
+    }
+
+
 }

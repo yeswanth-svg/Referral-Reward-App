@@ -90,15 +90,16 @@
     <div class="container">
         @if(session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                <strong>Success!</strong> {{session('success')}}.
+                <strong>Success!</strong> {{ session('success') }}.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @elseif(session('error'))
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> {{session('error')}}.
+                <strong>Error!</strong> {{ session('error') }}.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>
         @endif
+
         <!-- Button to toggle the drag-and-drop form -->
         <button class="btn btn-primary mb-3" id="uploadBtn">Upload Images</button>
 
@@ -112,7 +113,11 @@
                     <input type="file" name="images[]" id="fileInput" multiple hidden>
                     <button type="button" class="btn btn-secondary mt-3" id="selectFiles">Select Files</button>
                 </div>
-                <button type="submit" class="btn btn-success mt-3">Submit</button>
+
+                <!-- Preview images -->
+                <div class="row mt-3" id="imagePreview"></div>
+
+                <button type="submit" class="btn btn-success mt-3 mb-3 text-center">Submit</button>
             </form>
         </div>
 
@@ -136,7 +141,6 @@
                                 @method('DELETE')
                                 <button type="submit" class="btn btn-danger">Delete</button>
                             </form>
-
                         </td>
                     </tr>
                 @endforeach
@@ -145,38 +149,38 @@
     </div>
 </section>
 
-<!-- Optional: Include jQuery for toggling the form -->
 <script>
-
-    $('.delete-button').on('click', function (e) {
-        e.preventDefault();
-
-        if (confirm('Are you sure you want to delete this image?')) {
-            let form = $(this).closest('form');
-            $.ajax({
-                url: form.attr('action'),
-                type: 'POST',
-                data: form.serialize(),
-                success: function (response) {
-                    alert(response.message);
-                    // Optionally remove the deleted row from the DOM
-                    form.closest('tr').remove();
-                },
-                error: function (err) {
-                    alert('Error deleting the image.');
-                }
-            });
-        }
-    });
-
-
+    // Toggle the drag-and-drop form
     document.getElementById('uploadBtn').addEventListener('click', function () {
         var dragDropArea = document.getElementById('dragDropArea');
         dragDropArea.style.display = (dragDropArea.style.display === 'none') ? 'block' : 'none';
     });
 
+    // Trigger file input when clicking "Select Files"
     document.getElementById('selectFiles').addEventListener('click', function () {
         document.getElementById('fileInput').click();
+    });
+
+    // Preview selected images
+    document.getElementById('fileInput').addEventListener('change', function () {
+        var files = this.files;
+        var previewContainer = document.getElementById('imagePreview');
+        previewContainer.innerHTML = ''; // Clear previous previews
+
+        if (files) {
+            for (var i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var preview = document.createElement('div');
+                    preview.classList.add('col-md-3', 'mb-3');
+                    preview.innerHTML = `
+                        <img src="${e.target.result}" class="img-fluid rounded">
+                    `;
+                    previewContainer.appendChild(preview);
+                };
+                reader.readAsDataURL(files[i]);
+            }
+        }
     });
 
     // Initialize DataTables for the images table
@@ -184,6 +188,5 @@
         $('#imagesTable').DataTable();
     });
 </script>
-
 
 @endsection

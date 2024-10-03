@@ -18,26 +18,30 @@ class GalleryController extends Controller
 
     public function upload(Request $request)
     {
+        // Validate that at least one image is selected
         $request->validate([
-            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'images' => 'required',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048', // Validate each file
         ]);
 
-        if ($request->file('file')) {
-            $image = $request->file('file');
-            $imageName = time() . '_' . $image->getClientOriginalName();
-            $image->move(public_path('uploads/gallery'), $imageName);
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $imageName = time() . '_' . $image->getClientOriginalName();
+                $image->move(public_path('uploads/gallery'), $imageName);
 
-            // Save image details in the database
-            $galleryImage = new GalleryImage();
-            $galleryImage->name = $imageName;
-            $galleryImage->path = 'uploads/gallery/' . $imageName;
-            $galleryImage->save();
+                // Save image details in the database
+                $galleryImage = new GalleryImage();
+                $galleryImage->name = $imageName;
+                $galleryImage->path = 'uploads/gallery/' . $imageName;
+                $galleryImage->save();
+            }
 
-            return response()->json(['success' => $imageName]);
+            return redirect()->back()->with('success', 'Images uploaded successfully!');
         }
 
-        return response()->json(['error' => 'Upload failed'], 400);
+        return redirect()->back()->with('error', 'Upload failed');
     }
+
 
     // In GalleryController.php
 

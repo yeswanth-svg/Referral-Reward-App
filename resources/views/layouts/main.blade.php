@@ -84,12 +84,14 @@
                                     <ul class="navigation clearfix">
                                         <li class="{{request()->route()->getName() === 'welcome' ? 'current' : ''}}"><a
                                                 href="{{route('welcome')}}">Home</a></li>
+                                        <li class="{{request()->route()->getName() === 'about_us' ? 'current' : ''}}"><a
+                                                href="{{route('about_us')}}">About Us</a></li>
                                         <li class="{{request()->route()->getName() === 'services' ? 'current' : ''}}"><a
                                                 href="{{route('shop')}}">Services<span>Hot</span></a></li>
                                         <li class="{{request()->route()->getName() === 'gallery' ? 'current' : ''}}"><a
                                                 href="{{route('user.gallery')}}">Gallery</a></li>
-
-                                        <li><a href="">Contact</a></li>
+                                        <li class="{{request()->route()->getName() === 'contact' ? 'current' : ''}}"><a
+                                                href="{{route('contact')}}">Contact us</a></li>
                                     </ul>
                                 </div>
                             </nav>
